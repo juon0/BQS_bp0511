@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桌面工廠革命：雷雕跨業整合商業企劃</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    },
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        amber: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf9; color: #292524; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 400px; }
+        }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="antialiased font-sans leading-relaxed selection:bg-amber-200 selection:text-amber-900">
+
+    <!-- Chosen Palette: Warm Neutral (Stone 50) & Amber Accent (Amber 500/600) -->
+    <!-- Application Structure Plan: The SPA uses a single-page scrolling structure to unfold the business pitch like a story. It starts with the core concept (Hero), transitions into the paradigm shift (Cards), details the business model via an interactive Funnel (State-driven UI), showcases the ecosystem via a 9-Grid (CSS Hover logic) and application tabs, and concludes with quantitative financial milestones using an interactive Chart.js visualization. This narrative flow naturally guides investors/partners from concept to execution to projected returns. -->
+    <!-- Visualization & Content Choices: 1. Paradigm Shift: Static comparative cards -> Goal: Compare -> Method: CSS Grid layout to show evolution. 2. Business Model Funnel: Interactive stacked blocks -> Goal: Organize/Explain process -> Method: Tailwind styling + JS onClick state updates to reveal detailed strategies. 3. 9-Grid Ecosystem: CSS Grid with hover states -> Goal: Show relationships -> Method: Interactive Grid without SVG. 4. Financial Milestones: Line Chart -> Goal: Inform/Trend -> Method: Chart.js Canvas inside a constrained container to show exponential growth projections. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <nav class="fixed top-0 w-full bg-stone-50/90 backdrop-blur-md z-50 border-b border-stone-200">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-stone-900 tracking-wider">桌面工廠革命</div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-stone-600">
+                <a href="#concept" class="hover:text-amber-600 transition-colors">場域轉換</a>
+                <a href="#model" class="hover:text-amber-600 transition-colors">商業模式</a>
+                <a href="#ecosystem" class="hover:text-amber-600 transition-colors">跨業生態</a>
+                <a href="#vision" class="hover:text-amber-600 transition-colors">願景藍圖</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20">
+        <section class="max-w-6xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-block px-4 py-1.5 bg-amber-100 text-amber-800 font-semibold rounded-full text-sm mb-6">OMO 商業模式</div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-stone-900 leading-tight mb-6">
+                    親愛的！<br>我把<span class="text-amber-600">工廠</span>帶回家
+                </h1>
+                <p class="text-lg text-stone-600 mb-8 leading-relaxed">
+                    從「重工業」到「輕美學」的製造典範轉移。告別傳統雷雕加工廠的吵雜與粉塵，透過配備獨立空氣過濾系統的桌上型雷雕機，我們將製造的權力釋放回歸個人。在舒適的冷氣房裡，搭配一杯咖啡，享受創造的樂趣。
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#concept" class="px-8 py-3 bg-stone-900 text-white rounded-lg font-medium hover:bg-amber-600 transition-colors shadow-lg">探索企劃</a>
+                </div>
+            </div>
+            <div class="relative w-full h-[400px] bg-stone-200 rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-center items-center group cursor-pointer">
+                <div class="absolute inset-0 bg-gradient-to-br from-stone-800 to-stone-900 opacity-90 transition-opacity group-hover:opacity-100"></div>
+                <div class="z-10 text-center p-8">
+                    <div class="text-6xl mb-4">☕ x ⚡</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">品味生活取代工作</h3>
+                    <p class="text-stone-300">結合 AIoT 與 AI Agent，降低設計門檻，專注於提供人類獨特的情緒價值與對等關係。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="concept" class="max-w-6xl mx-auto px-6 py-20 border-t border-stone-200">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">工作場域的典範轉移</h2>
+                <p class="text-stone-600 max-w-2xl">
+                    本區塊展示製造業如何從封閉的工業區，逐步走向大眾的日常生活。透過空間的解放，我們創造了全新的服務場景與商業機會。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                    <div class="text-4xl mb-4 text-stone-400">🏭</div>
+                    <h3 class="text-xl font-bold text-stone-900 mb-2">過去：傳統工廠</h3>
+                    <p class="text-stone-600 text-sm">高門檻、遠距離、環境不佳。製造是被隔離的專業領域，遠離終端消費者。</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-amber-100 ring-2 ring-amber-50 relative hover:shadow-md transition-shadow">
+                    <div class="absolute -top-3 -right-3 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">現正發生</div>
+                    <div class="text-4xl mb-4 text-amber-500">🏢</div>
+                    <h3 class="text-xl font-bold text-stone-900 mb-2">現在：辦公與居家</h3>
+                    <p class="text-stone-600 text-sm">如同印表機帶來資訊共享，桌上型雷雕機（xTool, FLUX）帶來「實體製造」的共享與便利，軟硬體無縫整合。</p>
+                </div>
+                <div class="bg-stone-900 p-8 rounded-2xl shadow-lg text-stone-100 hover:bg-stone-800 transition-colors">
+                    <div class="text-4xl mb-4 text-white">☁️</div>
+                    <h3 class="text-xl font-bold text-white mb-2">未來：雲端與大眾</h3>
+                    <p class="text-stone-400 text-sm">結合街角商店與咖啡廳，透過「AI選物軟裝平臺」導流，打造雲端連線、隨處可造的微型分散式工廠。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="model" class="bg-stone-100 py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-stone-900 mb-4">粉絲漏斗與商業模式</h2>
+                    <p class="text-stone-600 max-w-2xl">
+                        此區塊詳細拆解我們如何以「咖啡廳」為線下實體錨點，透過三個階段的漏斗策略，將體驗客群轉化為長尾訂閱的忠實用戶。請點擊不同漏斗階層查看策略詳情。
+                    </p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-12 items-start">
+                    <div class="w-full lg:w-1/2 flex flex-col items-center space-y-4 pt-4">
+                        <button onclick="updateFunnel(1)" id="btn-funnel-1" class="funnel-btn w-full max-w-md py-6 bg-amber-500 text-white rounded-t-xl text-xl font-bold shadow-md hover:bg-amber-600 transition-colors transition-transform transform hover:-translate-y-1">
+                            階段 1：體驗與共創 (Top)
+                        </button>
+                        <button onclick="updateFunnel(2)" id="btn-funnel-2" class="funnel-btn w-[85%] max-w-[380px] py-6 bg-stone-300 text-stone-700 font-bold shadow-md hover:bg-amber-500 hover:text-white transition-all transform hover:-translate-y-1">
+                            階段 2：深度使用與商轉 (Middle)
+                        </button>
+                        <button onclick="updateFunnel(3)" id="btn-funnel-3" class="funnel-btn w-[70%] max-w-[320px] py-6 bg-stone-300 text-stone-700 rounded-b-xl font-bold shadow-md hover:bg-amber-500 hover:text-white transition-all transform hover:-translate-y-1">
+                            階段 3：長尾訂閱 (Bottom)
+                        </button>
+                    </div>
+
+                    <div class="w-full lg:w-1/2 bg-white rounded-2xl p-8 shadow-lg min-h-[300px] border border-stone-100">
+                        <div id="funnel-content">
+                            <h3 class="text-2xl font-bold text-amber-600 mb-4">階段 1：體驗與共創</h3>
+                            <div class="space-y-4 text-stone-700">
+                                <div class="flex items-start">
+                                    <span class="text-xl mr-3">🎯</span>
+                                    <div><strong>目標客群：</strong>鄰家女孩、社區青壯年、親子客群。</div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-xl mr-3">💡</span>
+                                    <div><strong>核心誘因：</strong>透過「喝咖啡順便做紀念品」大幅降低硬體體驗門檻。</div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-xl mr-3">📊</span>
+                                    <div><strong>數據價值：</strong>結合 ESG 概念（廢材回收再造）、手作課程，累積初期用戶數據 (Data) 與建立會員點數池。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem" class="max-w-6xl mx-auto px-6 py-20">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">跨業生態與產品應用</h2>
+                <p class="text-stone-600 max-w-2xl">
+                    這裡展示雷雕技術如何無縫融入日常用品，創造高毛利；同時，透過「九宮格」生態系矩陣，說明我們如何整合各方資源，打造共榮平台。
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-6 border-l-4 border-amber-500 pl-3">應用：器 (產品變現)</h3>
+                    <div class="flex space-x-2 mb-6 bg-stone-100 p-1 rounded-lg">
+                        <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn flex-1 py-2 px-4 rounded-md bg-white shadow text-amber-600 font-bold text-sm transition-all">酒器雕刻</button>
+                        <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn flex-1 py-2 px-4 rounded-md text-stone-500 font-medium text-sm hover:text-stone-800 transition-all">酒器藝術</button>
+                        <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn flex-1 py-2 px-4 rounded-md text-stone-500 font-medium text-sm hover:text-stone-800 transition-all">日常杯具</button>
+                    </div>
+                    <div id="tab1" class="tab-pane bg-white p-6 rounded-xl border border-stone-200">
+                        <h4 class="font-bold text-lg mb-2">專屬杯子與客製酒贈</h4>
+                        <p class="text-stone-600">從高質感的禮盒包裝，到結合 IP 偶像設計的畫龍點睛，提升產品附加價值。同時推廣「回收製酒切杯」的永續概念，落實 ESG。</p>
+                    </div>
+                    <div id="tab2" class="tab-pane bg-white p-6 rounded-xl border border-stone-200 hidden">
+                        <h4 class="font-bold text-lg mb-2">品牌專屬藝術延伸</h4>
+                        <p class="text-stone-600">利用雷雕技術製作獨特的品牌酒粹畫、軟木塞瓶飾等周邊商品，加深品牌記憶點與藝術品味。</p>
+                    </div>
+                    <div id="tab3" class="tab-pane bg-white p-6 rounded-xl border border-stone-200 hidden">
+                        <h4 class="font-bold text-lg mb-2">保溫杯與咖啡周邊</h4>
+                        <p class="text-stone-600">提供藝術刻字服務、製作咖啡廳專屬周邊，以及熟客環保外帶杯客製化，有效增強顧客黏著度與忠誠度。</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-6 border-l-4 border-stone-800 pl-3">結盟：九宮格生態圈</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="group relative bg-white border border-stone-200 p-4 rounded-xl text-center hover:bg-stone-900 hover:border-stone-900 transition-all cursor-default h-24 flex items-center justify-center">
+                            <span class="font-bold text-stone-700 group-hover:text-white transition-colors text-sm">禮贈品<br>貿易商</span>
+                            <div class="absolute inset-0 bg-amber-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-white text-xs font-medium -z-10 group-hover:z-10">大宗訂單來源</div>
+                        </div>
+                        <div class="group relative bg-white border border-stone-200 p-4 rounded-xl text-center hover:bg-stone-900 transition-all cursor-default h-24 flex items-center justify-center">
+                            <span class="font-bold text-stone-700 group-hover:text-white transition-colors text-sm">雷雕<br>設計師</span>
+                            <div class="absolute inset-0 bg-amber-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-white text-xs font-medium -z-10 group-hover:z-10">內容與IP提供者</div>
+                        </div>
+                        <div class="group relative bg-white border border-stone-200 p-4 rounded-xl text-center hover:bg-stone-900 transition-all cursor-default h-24 flex items-center justify-center">
+                            <span class="font-bold text-stone-700 group-hover:text-white transition-colors text-sm">異材質<br>加工廠</span>
+                            <div class="absolute inset-0 bg-amber-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-white text-xs font-medium -z-10 group-hover:z-10">後段加工支援</div>
+                        </div>
+                        <div class="group relative bg-stone-100 border border-stone-200 p-4 rounded-xl text-center hover:bg-stone-900 transition-all cursor-default h-24 flex items-center justify-center">
+                            <span class="font-bold text-stone-800 group-hover:text-white transition-colors text-sm">咖啡設備商<br>商務咖啡廳</span>
+                            <div class="absolute inset-0 bg-amber-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-white text-xs font-medium -z-10 group-hover:z-10">場域與客流提供</div>
+                        </div>
+                        <div class="group relative bg-white border border-stone-200 p-4 rounded-xl text-center hover:bg-stone-900 transition-all cursor-default h-24 flex items-center justify-center">
+                            <span class="font-bold text-stone-700 group-hover:text-white transition-colors text-sm">BumpQ<br>創意社群</span>
+                            <div class="absolute inset-0 bg-amber-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-white text-xs font-medium -z-10 group-hover:z-10">技術交流與創新</div>
+                        </div>
+                        <div class="group relative bg-white border border-stone-200 p-4 rounded-xl text-center hover:bg-stone-900 transition-all cursor-default h-24 flex items-center justify-center">
+                            <span class="font-bold text-stone-700 group-hover:text-white transition-colors text-sm">酒商<br>餐飲業</span>
+                            <div class="absolute inset-0 bg-amber-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-white text-xs font-medium -z-10 group-hover:z-10">高單價應用場景</div>
+                        </div>
+                        <div class="group relative bg-white border border-stone-200 p-4 rounded-xl text-center hover:bg-stone-900 transition-all cursor-default h-24 flex items-center justify-center">
+                            <span class="font-bold text-stone-700 group-hover:text-white transition-colors text-sm">青創市集<br>策展人</span>
+                            <div class="absolute inset-0 bg-amber-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-white text-xs font-medium -z-10 group-hover:z-10">線下曝光與銷售</div>
+                        </div>
+                        <div class="group relative bg-white border border-stone-200 p-4 rounded-xl text-center hover:bg-stone-900 transition-all cursor-default h-24 flex items-center justify-center">
+                            <span class="font-bold text-stone-700 group-hover:text-white transition-colors text-sm">品牌整合<br>行銷公司</span>
+                            <div class="absolute inset-0 bg-amber-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-white text-xs font-medium -z-10 group-hover:z-10">企業公關禮品</div>
+                        </div>
+                        <div class="group relative bg-white border border-stone-200 p-4 rounded-xl text-center hover:bg-stone-900 transition-all cursor-default h-24 flex items-center justify-center">
+                            <span class="font-bold text-stone-700 group-hover:text-white transition-colors text-sm">禮品代工<br>3D 列印</span>
+                            <div class="absolute inset-0 bg-amber-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-white text-xs font-medium -z-10 group-hover:z-10">周邊配套服務</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vision" class="bg-stone-900 text-white py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-amber-500 mb-4">願景與里程碑</h2>
+                    <p class="text-stone-300 max-w-3xl mx-auto">
+                        本區塊以圖表視覺化呈現我們未來 12 年的財務增長與市場擴張目標。終極願景是成為全球華人市場最具影響力的「雷雕跨業整合品牌平台」。
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-stone-800 p-6 rounded-xl border border-stone-700 hover:border-amber-500 transition-colors cursor-pointer" onclick="highlightChart(0)">
+                            <div class="text-amber-500 font-bold mb-1">Phase 1：概念驗證 (三年)</div>
+                            <div class="text-2xl font-black mb-2">營收 500 萬 NTD</div>
+                            <p class="text-stone-400 text-sm">成功輔導 3 家咖啡品牌，導入雷雕賦能加工平台，完成商業模式驗證與落地。</p>
+                        </div>
+                        <div class="bg-stone-800 p-6 rounded-xl border border-stone-700 hover:border-amber-500 transition-colors cursor-pointer" onclick="highlightChart(1)">
+                            <div class="text-amber-500 font-bold mb-1">Phase 2：全台擴張 (六年)</div>
+                            <div class="text-2xl font-black mb-2">營收 1,000 萬 NTD</div>
+                            <p class="text-stone-400 text-sm">擴張站點與生態系，成為全台最大的雷雕客製化商品與服務整合平台。</p>
+                        </div>
+                        <div class="bg-stone-800 p-6 rounded-xl border border-stone-700 hover:border-amber-500 transition-colors cursor-pointer" onclick="highlightChart(2)">
+                            <div class="text-amber-500 font-bold mb-1">Phase 3：生態系稱霸 (十二年)</div>
+                            <div class="text-2xl font-black mb-2">營收 億級 (萬萬) 規模</div>
+                            <p class="text-stone-400 text-sm">強勢出海，成為全球華人市場最具影響力的雷雕商轉 OMO 平台。</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <div class="bg-stone-50 rounded-2xl p-6 shadow-2xl border-4 border-stone-800">
+                            <div class="chart-container">
+                                <canvas id="milestoneChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-950 text-stone-500 py-8 text-center text-sm border-t border-stone-800">
+        <p>© 2026 桌面工廠革命. Business Plan Interactive SPA.</p>
+    </footer>
+
+    <script>
+        const funnelData = [
+            {
+                title: "階段 1：體驗與共創",
+                color: "text-amber-600",
+                details: [
+                    { icon: "🎯", label: "目標客群：", text: "鄰家女孩、社區青壯年、親子客群。" },
+                    { icon: "💡", label: "核心誘因：", text: "透過「喝咖啡順便做紀念品」大幅降低硬體體驗門檻。" },
+                    { icon: "📊", label: "數據價值：", text: "結合 ESG 概念（廢材回收再造）、手作課程，累積初期用戶數據 (Data) 與建立會員點數池。" }
+                ]
+            },
+            {
+                title: "階段 2：深度使用與商轉",
+                color: "text-amber-600",
+                details: [
+                    { icon: "💼", label: "應用場景：", text: "趣味打工 (打工 for fun)、青年創業測試、畢業生即時微型創業。" },
+                    { icon: "🤝", label: "B2B 引薦：", text: "作為接案媒合平台，提供批量製造採購、工業設計打樣。" },
+                    { icon: "🚀", label: "多元獲利：", text: "協助品牌行銷周邊製作、設計師接單、創作者 IP 實體化獲利等服務。" }
+                ]
+            },
+            {
+                title: "階段 3：長尾訂閱與生態圈",
+                color: "text-amber-600",
+                details: [
+                    { icon: "🔄", label: "月訂閱制：", text: "導入 SaaS & MaaS 模式，提供雷雕機台使用權限與專屬線上圖庫的訂閱服務。" },
+                    { icon: "🛠️", label: "硬體租賃：", text: "提供實體站點的硬體租賃方案，降低商用客戶的固定資產投資成本。" },
+                    { icon: "♻️", label: "生態循環：", text: "建立完整的雷雕機專業維修保養體系，以及二手設備採購與流通機制。" }
+                ]
+            }
+        ];
+
+        function updateFunnel(level) {
+            document.querySelectorAll('.funnel-btn').forEach((btn, idx) => {
+                if (idx + 1 === level) {
+                    btn.classList.replace('bg-stone-300', 'bg-amber-500');
+                    btn.classList.replace('text-stone-700', 'text-white');
+                } else {
+                    btn.classList.replace('bg-amber-500', 'bg-stone-300');
+                    btn.classList.replace('text-white', 'text-stone-700');
+                }
+            });
+
+            const data = funnelData[level - 1];
+            const contentDiv = document.getElementById('funnel-content');
+            
+            contentDiv.style.opacity = 0;
+            setTimeout(() => {
+                let htmlStr = `<h3 class="text-2xl font-bold ${data.color} mb-4">${data.title}</h3><div class="space-y-4 text-stone-700">`;
+                data.details.forEach(item => {
+                    htmlStr += `
+                        <div class="flex items-start">
+                            <span class="text-xl mr-3">${item.icon}</span>
+                            <div><strong>${item.label}</strong>${item.text}</div>
+                        </div>
+                    `;
+                });
+                htmlStr += `</div>`;
+                contentDiv.innerHTML = htmlStr;
+                contentDiv.style.transition = 'opacity 0.3s ease';
+                contentDiv.style.opacity = 1;
+            }, 150);
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.add('hidden');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'shadow', 'text-amber-600', 'font-bold');
+                btn.classList.add('text-stone-500', 'font-medium');
+            });
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('text-stone-500', 'font-medium');
+            activeBtn.classList.add('bg-white', 'shadow', 'text-amber-600', 'font-bold');
+        }
+
+        let chartInstance = null;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('milestoneChart').getContext('2d');
+            
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(245, 158, 11, 0.5)'); 
+            gradient.addColorStop(1, 'rgba(245, 158, 11, 0.0)');
+
+            const dataPoints = [5, 10, 100]; 
+            const labels = ['三年 (概念驗證)', '六年 (全台擴張)', '十二年 (生態稱霸)'];
+
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '營收預估 (百萬 NTD)',
+                        data: dataPoints,
+                        borderColor: '#d97706',
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#292524',
+                        pointBorderColor: '#d97706',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#292524',
+                            titleFont: { size: 14, family: "'Noto Sans TC', sans-serif" },
+                            bodyFont: { size: 16, weight: 'bold', family: "'Noto Sans TC', sans-serif" },
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    let val = context.raw;
+                                    if(val === 100) return '營收：億級規模 (100M+)';
+                                    return '營收預估：' + val + '00 萬 NTD';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#e5e7eb', drawBorder: false },
+                            ticks: {
+                                color: '#57534e',
+                                font: { family: "'Noto Sans TC', sans-serif" },
+                                callback: function(value) {
+                                    if(value === 100) return '1億+';
+                                    return value + 'M';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                color: '#57534e',
+                                font: { family: "'Noto Sans TC', sans-serif", weight: 'bold' }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        });
+
+        function highlightChart(index) {
+            if(!chartInstance) return;
+            const meta = chartInstance.getDatasetMeta(0);
+            
+            chartInstance.data.datasets[0].pointRadius = [6, 6, 6];
+            chartInstance.data.datasets[0].pointBackgroundColor = ['#292524', '#292524', '#292524'];
+            
+            chartInstance.data.datasets[0].pointRadius[index] = 12;
+            chartInstance.data.datasets[0].pointBackgroundColor[index] = '#f59e0b';
+            
+            chartInstance.update();
+        }
+    </script>
+</body>
+</html>
